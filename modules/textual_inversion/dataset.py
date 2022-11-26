@@ -138,8 +138,8 @@ class PersonalizedBase(Dataset):
         return entry
 
 class PersonalizedDataLoader(DataLoader):
-    def __init__(self, dataset, latent_sampling_method="once", batch_size=1, pin_memory=False):
-        super(PersonalizedDataLoader, self).__init__(dataset, shuffle=True, drop_last=True, batch_size=batch_size, pin_memory=pin_memory)
+    def __init__(self, dataset, latent_sampling_method="once", batch_size=1, pin_memory=False, num_workers: int = 8):
+        super(PersonalizedDataLoader, self).__init__(dataset, shuffle=True, drop_last=True, batch_size=batch_size, pin_memory=pin_memory, num_workers=num_workers)
         if latent_sampling_method == "random":
             self.collate_fn = collate_wrapper_random
         else:
